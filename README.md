@@ -149,7 +149,7 @@ FROM issued_status
 GROUP BY issued_emp_id
 HAVING COUNT(issued_id) > 1;
 ```
-**CTAS
+**CTAS**
 **Tarefa 6: Criar Tabelas Resumo: Utilizar CTAS para gerar novas tabelas com base nos resultados de consultas — cada livro e o total de vezes que foi emitido (book_issued_cnt)**
 ```sql
 CREATE TABLE book_cnts
