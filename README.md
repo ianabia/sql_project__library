@@ -116,3 +116,59 @@ CREATE TABLE return_status
 - **Ler**: Recuperados e exibidos dados de várias tabelas.
 - **Atualizar**: Atualizados registros na tabela `employees`.
 - **Excluir**: Removidos registros da tabela `members` conforme necessário.
+
+
+-- Tarefa 1. Criar um Novo Registro de Livro -- "978-1-60129-456-2', 'To Kill a Mockingbird', 'Classic', 6.00, 'yes', 'Harper Lee', 'J.B. Lippincott & Co.')"
+```
+INSERT INTO books(isbn, book_title, category, rental_price, status, author, publisher)
+VALUES('978-1-60129-456-2', 'To Kill a Mockingbird', 'Classic', 6.00, 'yes', 'Harper Lee', 'J.B. Lippincott & Co.');
+SELECT * FROM books;
+```
+-- Tarefa 2: Atualizar o Endereço de um Membro Existente
+```
+UPDATE members
+SET member_address = '125 Oak St'
+WHERE member_id = 'C103';
+```
+-- Tarefa 3: Delete a Record from the Issued Status Table -- Objective: Delete the record with issued_id = 'IS121' from the issued_status table
+```
+DELETE FROM issued_status
+WHERE   issued_id =   'IS121';
+```
+-- Tarefa 4: Excluir um Registro da Tabela de Status de Empréstimo — Objetivo: Excluir o registro com issued_id = 'IS121' da tabela issued_status
+```
+SELECT * FROM issued_status
+WHERE issued_emp_id = 'E101'
+```
+-- Tarefa 5: Listar Membros que Emitiram Mais de um Livro — Objetivo: Usar GROUP BY para encontrar membros que emitiram mais de um livro
+```
+SELECT 
+	issued_emp_id
+	-- COUNT(issued_id) as total_book_issued
+FROM issued_status
+GROUP BY issued_emp_id
+HAVING COUNT(issued_id) > 1;
+```
+-- CTAS
+-- Tarefa 6: Criar Tabelas Resumo: Utilizar CTAS para gerar novas tabelas com base nos resultados de consultas — cada livro e o total de vezes que foi emitido (book_issued_cnt)
+```
+CREATE TABLE book_cnts
+AS
+SELECT
+	b.isbn,
+	b.book_title,
+	COUNT(ist.issued_id) as no_issued
+FROM books as b
+JOIN
+issued_status as ist
+ON ist.issued_book_isbn = b.isbn
+GROUP BY 1, 2;
+
+SELECT * FROM book_cnts;
+
+-- Tarefa 7. Recuperar Todos os Livros de uma Categoria Específica
+
+SELECT * FROM books
+WHERE category = 'Classic';
+
+-- Tarefa 8: Encontrar a Receita Total de Aluguéis por Categoria
