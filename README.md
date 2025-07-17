@@ -118,29 +118,29 @@ CREATE TABLE return_status
 - **Excluir**: Removidos registros da tabela `members` conforme necessário.
 
 
--- Tarefa 1. Criar um Novo Registro de Livro -- "978-1-60129-456-2', 'To Kill a Mockingbird', 'Classic', 6.00, 'yes', 'Harper Lee', 'J.B. Lippincott & Co.')"
+**Tarefa 1. Criar um Novo Registro de Livro -- "978-1-60129-456-2', 'To Kill a Mockingbird', 'Classic', 6.00, 'yes', 'Harper Lee', 'J.B. Lippincott & Co.')"
 ```sql
 INSERT INTO books(isbn, book_title, category, rental_price, status, author, publisher)
 VALUES('978-1-60129-456-2', 'To Kill a Mockingbird', 'Classic', 6.00, 'yes', 'Harper Lee', 'J.B. Lippincott & Co.');
 SELECT * FROM books;
 ```
--- Tarefa 2: Atualizar o Endereço de um Membro Existente
+**Tarefa 2: Atualizar o Endereço de um Membro Existente
 ```sql
 UPDATE members
 SET member_address = '125 Oak St'
 WHERE member_id = 'C103';
 ```
--- Tarefa 3: Delete a Record from the Issued Status Table -- Objective: Delete the record with issued_id = 'IS121' from the issued_status table
+**Tarefa 3: Delete a Record from the Issued Status Table -- Objective: Delete the record with issued_id = 'IS121' from the issued_status table
 ```sql
 DELETE FROM issued_status
 WHERE   issued_id =   'IS121';
 ```
--- Tarefa 4: Excluir um Registro da Tabela de Status de Empréstimo — Objetivo: Excluir o registro com issued_id = 'IS121' da tabela issued_status
+**Tarefa 4: Excluir um Registro da Tabela de Status de Empréstimo — Objetivo: Excluir o registro com issued_id = 'IS121' da tabela issued_status
 ```sql
 SELECT * FROM issued_status
 WHERE issued_emp_id = 'E101'
 ```
--- Tarefa 5: Listar Membros que Emitiram Mais de um Livro — Objetivo: Usar GROUP BY para encontrar membros que emitiram mais de um livro
+**Tarefa 5: Listar Membros que Emitiram Mais de um Livro — Objetivo: Usar GROUP BY para encontrar membros que emitiram mais de um livro
 ```sql
 SELECT 
 	issued_emp_id
@@ -149,8 +149,8 @@ FROM issued_status
 GROUP BY issued_emp_id
 HAVING COUNT(issued_id) > 1;
 ```
--- CTAS
--- Tarefa 6: Criar Tabelas Resumo: Utilizar CTAS para gerar novas tabelas com base nos resultados de consultas — cada livro e o total de vezes que foi emitido (book_issued_cnt)
+**CTAS
+**Tarefa 6: Criar Tabelas Resumo: Utilizar CTAS para gerar novas tabelas com base nos resultados de consultas — cada livro e o total de vezes que foi emitido (book_issued_cnt)
 ```sql
 CREATE TABLE book_cnts
 AS
@@ -166,9 +166,9 @@ GROUP BY 1, 2;
 
 SELECT * FROM book_cnts;
 ```
--- Tarefa 7. Recuperar Todos os Livros de uma Categoria Específica
+**Tarefa 7. Recuperar Todos os Livros de uma Categoria Específica
 ```sql
 SELECT * FROM books
 WHERE category = 'Classic';
 ```
--- Tarefa 8: Encontrar a Receita Total de Aluguéis por Categoria
+**Tarefa 8: Encontrar a Receita Total de Aluguéis por Categoria
