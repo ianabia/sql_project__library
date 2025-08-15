@@ -210,7 +210,7 @@ employees as e2
 ON e2.emp_id = b.manager_id
 ```
 
-Tarefa 11 11. **Criar uma tabela de livros com preço de aluguel acima de um determinado valor**:
+Tarefa 11. **Criar uma tabela de livros com preço de aluguel acima de um determinado valor**:
 ```sql
 CREATE TABLE expensive_books AS
 SELECT * FROM books
@@ -391,6 +391,7 @@ GROUP BY 1, 2
 ```
 
 **Tarefa 18: Stored Procedure**
+
 Objetivo:
 Criar uma procedure para gerenciar o status dos livros em um sistema de biblioteca.
 Descrição:
